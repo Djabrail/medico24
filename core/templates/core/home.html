@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Поиск лучших врачей{% endblock title %}
+
 {% block content %}
 <form action="{% url 'core:search' %}" class="navbar-form" method="get">
 <div class="search">
