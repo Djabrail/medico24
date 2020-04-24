@@ -22,7 +22,7 @@ let csrftoken = getCookie("csrftoken");
 function getCities() {
   const cityList = document.querySelector(".city__list");
 
-  fetch("http://127.0.0.1:8000/locations/city/api/")
+  fetch("/locations/city/api/")
     .then(function(response) {
       return response.json();
     })
@@ -153,7 +153,7 @@ function getSearch() {
     }
   };
 
-  fetch("http://127.0.0.1:8000/api/")
+  fetch("/api/")
     .then(function(response) {
       return response.json();
     })
