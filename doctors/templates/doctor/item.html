@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="doctor">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="/">Medico24</a><span>»</span>
+        </li>
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="/{{ request.session.city_slug }}">{{ request.session.city_name }}</a><span>»</span>
+        </li>
+        <li class="breadcrumb__item">
+          {% for service in service.all %}
+            <a class="breadcrumb__link" href="/{{ request.session.city_slug }}/{{service.slug}}">{{service.name}}</a><span>»</span>
+          {% endfor %}
+        </li>
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="#" aria-current="location">{{doctor.user.full_name}}</a>
+        </li>
+      </ol>
+    </nav>
+    <div class="doctor__page">
+      <div class="doctor__top">
+        <aside class="doctors__aside-left">
+          <figure class="doctors__figure">
+            <img
+              src="{{doctor.user.image.url}}"
+              alt="Dummy Image"
+              class="doctors__image"
+            />
+          </figure>
+        </aside>
+        <aside class="doctor__aside-right">
+          <header class="doctor__header">
+            <a href="" class="doctor__title">{{doctor.user.full_name}}</a>
+            <h3 class="doctor__subtitle">
+               {% for service in doctor.service.all %}
+                 {{service.name}}
+               {% endfor %}
+            </h3>
+            <div class="doctor__experience">Стаж {{doctor.experience }} лет, {{doctor.rank }} категория</div>
+          </header>
+          <div class="doctor__body">
+            {{doctor.description}}
+          </div>
+
+          <div class="doctors__clinics-list">
+            <div class="doctors__clinics-item">
+              <div class="doctors__clinic">
+                <div class="doctors__clinic-name">Клиника «Профессионал»</div>
+                <div class="doctors__clinic-address">
+                  Волгоград, ул. Академическая, д. 2
+                </div>
+              </div>
+              <footer class="doctors__footer">
+                <a class="doctors__button">Запись на прием</a>
+                <a class="doctors__phone" href="">+7 (926) 328-95-07</a>
+                <div class="doctors__price">Прием — 750 руб.</div>
+              </footer>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="doctor__bottom">
+        <div class="doctor__card">
+          <div class="doctor__card-title">Образование</div>
+          <div class="doctor__card-body">
+            <div class="doctor__card-list">
+              <div class="doctor__card-item">
+                <div class="doctor__card-number">2009</div>
+                <div class="doctor__card-name">
+                  Дагестанский государственный медицинский университет (лечебное
+                  дело)
+                </div>
+                <div class="doctor__card-type">Базовое образование</div>
+              </div>
+              <div class="doctor__card-item">
+                <div class="doctor__card-number">2010</div>
+                <div class="doctor__card-name">
+                  Дагестанский государственный медицинский университет
+                  (акушерство и гинекология)
+                </div>
+                <div class="doctor__card-type">Интернатура</div>
+              </div>
+              <div class="doctor__card-item">
+                <div class="doctor__card-number">2010</div>
+                <div class="doctor__card-name">
+                  Дагестанский государственный медицинский университет
+                  (акушерство и гинекология)
+                </div>
+                <div class="doctor__card-type">Интернатура</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="doctor__card">
+          <div class="doctor__card-title">Повышение квалификации</div>
+          <div class="doctor__card-body">
+            <div class="doctor__card-list">
+              <div class="doctor__card-item">
+                <div class="doctor__card-number">2009</div>
+                <div class="doctor__card-name">
+                  Дагестанский государственный медицинский университет (лечебное
+                  дело)
+                </div>
+                <div class="doctor__card-type">Базовое образование</div>
+              </div>
+              <div class="doctor__card-item">
+                <div class="doctor__card-number">2010</div>
+                <div class="doctor__card-name">
+                  Дагестанский государственный медицинский университет
+                  (акушерство и гинекология)
+                </div>
+                <div class="doctor__card-type">Интернатура</div>
+              </div>
+              <div class="doctor__card-item">
+                <div class="doctor__card-number">2010</div>
+                <div class="doctor__card-name">
+                  Дагестанский государственный медицинский университет
+                  (акушерство и гинекология)
+                </div>
+                <div class="doctor__card-type">Интернатура</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+

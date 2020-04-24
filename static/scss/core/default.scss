@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0.6em;
+}
+::placeholder {
+  color: #b8babd;
+}
+::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 100%, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+*:focus {
+  outline: none;
+}
+body {
+  font: 14px Arial, Verdana, sans-serif;
+  background-color: #f4f4fb;
+}
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media #{$latex-small} {
+    .container {
+      padding: 16px;
+    }
+}

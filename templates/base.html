@@ -1,0 +1,72 @@
+{% load static %}
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    {% render_bundle 'style' 'css' %}
+    {% block style %}{% endblock %}
+
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+{% include 'navbar.html' %}
+{% block content %} {% endblock content %}
+{% include 'footer.html' %}
+
+    <div class="modal modal__city">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h5 class="modal__title">Выберите свой город</h5>
+            <a class="modal__close">×</a>
+          </div>
+          <div class="modal__body">
+            <ul class="city__list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal modal__doctor">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h5 class="modal__title">Запись на прием к врачу</h5>
+            <a class="modal__close">×</a>
+          </div>
+          <div class="modal__body modal__body-doctor">
+            <aside class="doctors__aside-left">
+              <figure class="doctors__figure">
+                <img
+                  src="https://prodoctorov.ru/media/photo/krasnoyarsk/doctorimage/235736/462481-235736-leleko_l.jpg"
+                  alt="Dummy Image"
+                  class="doctors__image"
+                />
+              </figure>
+            </aside>
+            <aside class="doctors__aside-right">
+              <header class="doctors__header">
+                <a href="" class="doctors__title">Гурова Лина Петровна</a>
+                <h3 class="doctors__subtitle">
+                  Гинеколог
+                </h3>
+              </header>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      const citySaveUrl = '/cookie/city/';
+      const currentCitySlug = '{{ request.session.city_slug }}';
+    </script>
+    {% block javascript %}    {% endblock %}
+
+    {% render_bundle 'main' 'js' %}
+  </body>
+</html>

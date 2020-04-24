@@ -1,0 +1,118 @@
+.doctor {
+    &__top {
+        display: flex;
+        padding: 20px;
+        background-color: #fff;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+    &__header {
+        color: #333;
+        font-size: 22px;
+    }
+
+    &__title {
+        color: #302a7a;
+        text-decoration: none;
+        font-size: 22px;
+        line-height: 1.42857;
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__body {
+        padding-top: 10px;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #5a5c61;
+    }
+
+    &__aside-right {
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    &__subtitle {
+        font-size: 13px;
+        color: #0ea646;
+        margin-top: 2px;
+    }
+
+    &__experience {
+        font-size: 13px;
+        line-height: 1.42857;
+        color: #333;
+    }
+
+    &__bottom {
+        padding-top: 10px;
+        font-size: 13px;
+        line-height: 1.42857;
+        color: #333;
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    &__card {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 4px;
+
+        &-title {
+            color: #302a7a;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 130%;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        &-body {
+            margin-top: 20px;
+        }
+
+        &-list {
+            display: flex;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex: 0 0 33%;
+        }
+
+        &-number {
+            background: #e0dbf8;
+            border-radius: 4px;
+            color: #5a5c61;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        &-name {
+            color: #5a5c61;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 130%;
+            width: 100%;
+        }
+
+        &-type {
+            color: #0ea646;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 130%;
+            margin: 8px 0 0;
+        }
+    }
+}

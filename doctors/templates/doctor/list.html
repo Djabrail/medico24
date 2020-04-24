@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ doctors_count }} {{service.name }}  {{ request.session.city_name }} {% endblock title %}
+
+
+{% block content %}
+{% include 'core/inludes/search-form.html' %}
+<div class="doctors">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="/">Medico24</a><span>»</span></li>
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="/{{ request.session.city_slug }}">{{ request.session.city_name }} </a></li>
+          </ol>
+        </nav>
+        <div class="doctors__header">
+          Врачи в {{ request.session.city_name }}
+        </div>
+        <div class="doctors__description">
+          Врачи в {{ request.session.city_name }} (народный рейтинг): 4402 врача, 3180 отзывов, цены, запись на приём, адреса, подробная информация. Выберите хорошего врача в {{ request.session.city_name }} и запишитесь на приём в два клика.
+        </div>
+        <div class="doctors__list">
+          {% for doctor in doctors %}
+          <article class="doctors__item">
+            <aside class="doctors__aside-left">
+              <figure class="doctors__figure">
+                <img
+                  src="{{doctor.user.image.url}}"
+                  alt="Dummy Image"
+                  class="doctors__image"
+                />
+              </figure>
+            </aside>
+            <aside class="doctors__aside-right">
+              <header class="doctors__header">
+                <a href="/{{ request.session.city_slug }}/vrach/{{doctor.user.id}}-{{doctor.user.slug}}" class="doctors__title">{{doctor.user.full_name }}</a>
+                <h3 class="doctors__subtitle">
+                  {% for service in doctor.service.all %}
+                    {{service.name}}
+                  {% endfor %}
+
+                </h3>
+                <div class="doctors__experience">Стаж {{doctor.experience }} лет, {{doctor.rank }} категория</div>
+              </header>
+              <div class="doctors__body">
+                {{doctor.description}}
+              </div>
+
+              <div class="doctors__clinics-list">
+                {% for clinic in doctor.clinic.all %}
+                <div class="doctors__clinics-item">
+                  <div class="doctors__clinic">
+                    <div class="doctors__clinic-name">Клиника «{{clinic.name}}»</div>
+                    <div class="doctors__clinic-address">
+                      {{ request.session.city_name }}, ул. {{clinic.street}}, д. {{clinic.house_number}}
+                    </div>
+                  </div>
+                  <footer class="doctors__footer">
+                    <a class="doctors__button">Запись на прием</a>
+                    <a class="doctors__phone" href="">{{clinic.phone}}</a>
+                    <div class="doctors__price">Прием — от {{doctor.price}} руб.</div>
+                  </footer>
+                </div>
+                {% endfor %}
+              </div>
+            </aside>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+

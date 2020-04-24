@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-12">
+
+    {% include 'core/inludes/search-form.html' %}
+
+    {% for clinic in clinics %}
+        {{clinic.name}}
+    {% endfor %}
+
+
+    {% for service in services %}
+        {{service.name}}
+    {% endfor %}
+
+    {% for doctor in doctors %}
+        {{doctor.user.full_name}}
+    {% endfor %}
+
+
+</div>
+{% endblock content %}
+
+
+{% block javascript %}
+
+{% endblock %}

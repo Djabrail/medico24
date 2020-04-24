@@ -1,0 +1,89 @@
+.home {
+  padding-bottom: 30px;
+}
+
+.card {
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex: 0 0 32%;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #e8ebf1;
+    border-radius: 5px;
+    transition: .2s ease-in-out;
+    margin-bottom: 20px;
+  }
+  &__title {
+    display: block;
+    padding: 10px;
+    color: #181d21;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__body {
+    border: 1px solid #f4f6f7;
+    border-radius: 5px;
+    padding: 8px 0;
+  }
+  &__link{
+    color: #5a5c61;
+    display: block;
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 14px;
+    text-decoration: none;
+    transition: .2s;
+
+    &:hover {
+      color: #59499d;
+      text-decoration: underline;
+    }
+  }
+  &__button {
+    display: block;
+    width: 100%;
+    background: #e5dfff;
+    border: none;
+    color: #59499d;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: auto;
+    line-height: 1em;
+    outline: none;
+    padding: 18px 2em;
+    text-align: center;
+    text-decoration: none;
+    transition: all .2s ease-out 0s;
+    user-select: none;
+    white-space: nowrap;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: #cac3eb;
+    }
+  }
+}
+
+
+@media #{$latex-medium} {
+    .card__list {
+      flex-direction: column;
+    }
+}

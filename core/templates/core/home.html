@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url 'core:search' %}" class="navbar-form" method="get">
+<div class="search">
+      <div class="container">
+        <div class="search__title">
+          Поиск лучших врачей
+        </div>
+        <div class="search__group">
+
+           <input type="text" name="q" class="form-control search__input" placeholder="Поиск врача, клиники, услуги" autocomplete="off" required="">
+          <button class="search__btn">Поиск</button>
+
+        </div>
+        <div class="search__dropdown-result">
+          <div class="search__dropdown-list search__dropdown-clinics"></div>
+          <div class="search__dropdown-list search__dropdown-services"></div>
+          <div class="search__dropdown-list search__dropdown-doctors"></div>
+        </div>
+      </div>
+    </div>
+</form>
+
+    <div class="home">
+      <div class="container">
+        <div class="card__list">
+            <div class="card__item">
+            <a href="/{{ request.session.city_slug }}/vrach/" class="card__title">Врачи</a>
+                <div class="card__body">
+                    {% for service in services %}
+                        <a class="card__link" href="/{{ request.session.city_slug }}/{{service.slug}}">{{service.name}}</a>
+                    {% endfor %}
+                </div>
+            <a href="/{{ request.session.city_slug }}/vrach/" class="card__button">Все врачи</a>
+            </div>
+            <div class="card__item">
+            <a href="/{{ request.session.city_slug }}/clinici/" class="card__title">Клиники</a>
+                <div class="card__body">
+                    {% for type in clinic_type %}
+                        <a class="card__link" href="/{{ request.session.city_slug }}/{{type.slug}}">{{type.name}}</a>
+                    {% endfor %}
+                </div>
+            <a href="/{{ request.session.city_slug }}/clinici/" class="card__button">Все клиники</a>
+            </div>
+            <div class="card__item">
+            <a href="/{{ request.session.city_slug }}/uslugi/" class="card__title">Услуги</a>
+                <div class="card__body">
+                    {% for service in clinic_service %}
+                        <a class="card__link" href="/{{ request.session.city_slug }}/{{service.slug}}">{{service.name}}</a>
+                    {% endfor %}
+                </div>
+            <a href="/{{ request.session.city_slug }}/uslugi/" class="card__button">Все услуги</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

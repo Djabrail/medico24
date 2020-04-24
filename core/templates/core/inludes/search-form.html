@@ -1,0 +1,19 @@
+<form action="{% url 'core:search' %}" class="navbar-form" method="get">
+<div class="search search__pages">
+      <div class="container">
+
+        <div class="search__group">
+
+           <input type="text" name="q" class="form-control search__input" placeholder="Поиск врача, клиники, услуги" autocomplete="off" required="">
+          <button class="search__btn">Поиск</button>
+
+        </div>
+        <div class="search__dropdown-result">
+          <div class="search__dropdown-list search__dropdown-clinics"></div>
+          <div class="search__dropdown-list search__dropdown-services"></div>
+          <div class="search__dropdown-list search__dropdown-doctors"></div>
+        </div>
+      </div>
+    </div>
+</form>
+

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-12">
+
+    {% include 'core/inludes/search-form.html' %}
+
+    {% for clinic in clinics %}
+        <a href="">{{clinic.name}}</a>
+    {% endfor %}
+
+
+</div>
+{% endblock content %}
+
+
+{% block javascript %}
+
+{% endblock %}

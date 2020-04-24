@@ -1,0 +1,17 @@
+.breadcrumb {
+  position: relative;
+
+  &__list {
+    list-style: none;
+    display: flex;
+  }
+  &__item {
+    span {
+      margin: 0 5px;
+      color: #979ea7;
+    }
+  }
+  &__link {
+    color: #979ea7;
+  }
+}

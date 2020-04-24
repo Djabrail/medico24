@@ -1,0 +1,10 @@
+<svg width="16px" height="16px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M 40 80
+    C 0 -10, 160 -10, 120 80
+    L 80 150
+    L 40 80
+    M 55 57 a 25, 25, 0 1, 0 50,0 a 25, 25, 0 1, 0 -50,0
+    Z"
+          fill="silver" fill-opacity="1"
+    />
+</svg>

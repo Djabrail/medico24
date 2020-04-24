@@ -1,0 +1,12 @@
+$latex-small: "(max-width: 576px)";
+$latex-medium: "(max-width: 768px)";
+$latex-large: "(max-width: 992px)";
+$latex-extra: "(max-width: 1200px)";
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap');
+
+@media #{$latex-large} {
+    p {
+        font-size: 12px;
+    }
+}
