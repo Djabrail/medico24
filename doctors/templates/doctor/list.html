@@ -33,7 +33,7 @@
             </aside>
             <aside class="doctors__aside-right">
               <header class="doctors__header">
-                <a href="/{{ request.session.city_slug }}/vrach/{{doctor.user.id}}-{{doctor.user.slug}}" class="doctors__title">{{doctor.user.full_name }}</a>
+                <a href="/{{ request.session.city_slug }}/vrach/{{doctor.user.slug}}" class="doctors__title">{{doctor.user.full_name }}</a>
                 <h3 class="doctors__subtitle">
                   {% for service in doctor.service.all %}
                     {{service.name}}

@@ -7,4 +7,4 @@ class ClinicSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=255)
     slug = serializers.CharField(max_length=255)
     description = serializers.CharField()
-    city = CitySerializer(many=True, read_only=True)
+    city = CitySerializer()

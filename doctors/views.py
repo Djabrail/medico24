@@ -28,7 +28,7 @@ class DoctorItemView(View):
         context= {}
 
         city = get_object_or_404(City, slug=kwargs['city_slug'])
-        doctor = get_object_or_404(Doctor, user_id=kwargs['doctor_id'])
+        doctor = get_object_or_404(Doctor, user__slug=kwargs['doctor_slug'])
         service = Service.objects.filter(doctor=doctor)[:1]
 
         if city:

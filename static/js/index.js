@@ -147,7 +147,7 @@ function getSearch() {
         const link = document.createElement("a");
         link.classList.add("dropdown_search_item");
         link.textContent = item.user.full_name;
-        link.href = `/${currentCitySlug}/vrach/${item.user.id}-${item.user.slug}`;
+        link.href = `/${currentCitySlug}/vrach/${item.user.slug}`;
         list.append(link);
       });
     }

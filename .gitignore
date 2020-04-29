@@ -248,3 +248,5 @@ db.sqlite3
 .idea/
 media/
 assets/
+
+medico24/settings.py

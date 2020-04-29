@@ -4,6 +4,8 @@ from django.contrib.auth.models import (
 )
 from django.core.validators import RegexValidator
 from datetime import date
+from django.utils.text import slugify
+from unidecode import unidecode
 
 def image_path(instance, filename):
     return '/'.join([str('users'), str(instance.id), str('avatar'), date.today().strftime('%Y/%m/%d'), filename])
@@ -62,7 +64,7 @@ class User(AbstractBaseUser):
                                  ),
                              ])
     image = models.ImageField(null=True, blank=True, upload_to=image_path, verbose_name="Фото")
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(verbose_name="Дата рождения",null=True,blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -90,25 +92,28 @@ class User(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-    # @property
-    # def full_name(self):
-    #     if self.first_name and self.last_name and self.patronymic:
-    #         return '{} {} {}'.format(self.first_name, self.last_name, self.patronymic)
-    #     elif self.first_name and self.last_name:
-    #         return '{} {}'.format(self.first_name, self.last_name)
-    #     elif self.first_name:
-    #         return '{}'.format(self.first_name)
-    #     else:
-    #         return self.phone
+
 
 
     def save(self, *args, **kwargs):
         if self.first_name and self.last_name and self.patronymic:
             self.full_name = '{} {} {}'.format(self.first_name, self.last_name, self.patronymic)
+            self.slug = slugify(unidecode(u'{}-{}-{}-{}'.format(self.id, self.first_name, self.last_name, self.patronymic)))
         elif self.first_name and self.last_name:
             self.full_name = '{} {}'.format(self.first_name, self.last_name)
+            self.slug = slugify(unidecode(u'{}-{}-{}'.format(self.id, self.first_name, self.last_name)))
         elif self.first_name:
             self.full_name = '{}'.format(self.first_name)
+            self.slug = slugify(unidecode(u'{}-{}'.format(self.id, self.first_name)))
         else:
             self.full_name = self.phone
+            self.slug = slugify(unidecode(u'{}-doctor'.format(self.id)))
+
+
         super(User, self).save(*args, **kwargs)
+
+
+    # def save(self, *args, **kwargs):
+    #     if self.id:
+    #         self.email = str('user{}@yandex.ru'.format(self.id))
+    #     super(User, self).save(*args, **kwargs)

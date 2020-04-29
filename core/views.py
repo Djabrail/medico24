@@ -36,38 +36,8 @@ class HomeView(View):
 
 
         services = Service.objects.filter(doctor__clinic__city__id=location_city_id)[:4]
-        clinic_type = ClinicType.objects.filter(clinic__id=location_city_id)[:4]
-        clinic_service = ClinicService.objects.filter(clinic__id=location_city_id)[:4]
-
-        context = {
-            'search_form': search_form,
-            'services': services,
-            'clinic_type': clinic_type,
-            'clinic_service': clinic_service
-        }
-
-        return render(request, self.template_name, context)
-
-
-class HomeCityView(View):
-    template_name = "core/home.html"
-
-    def get(self, request, *args, **kwargs):
-        context= {}
-        search_form = SearchForm()
-
-        if "city_id" in request.session:
-            location_city_id = request.session['city_id']
-        else:
-            location_city_id = request.session['city_id'] = 2
-            request.session['city_slug'] = 'moskva'
-            request.session['city_name'] = 'Москва'
-
-
-
-        services = Service.objects.filter(doctor__clinic__city__id=location_city_id)[:4]
-        clinic_type = ClinicType.objects.filter(clinic__id=location_city_id)[:4]
-        clinic_service = ClinicService.objects.filter(clinic__id=location_city_id)[:4]
+        clinic_type = ClinicType.objects.filter(clinic__city__id=location_city_id)[:4]
+        clinic_service = ClinicService.objects.filter(clinic__city__id=location_city_id)[:4]
 
         context = {
             'search_form': search_form,
@@ -143,7 +113,10 @@ class SearchAPIView(APIView):
 
 
         clinics = Clinic.objects.filter(city=location_city_id)
-        doctors = Doctor.objects.filter(clinic__in=clinics)
+        for clinic in clinics:
+            print(clinic.city.id)
+        doctors = Doctor.objects.filter(clinic__city=location_city_id).distinct()
+
 
 
         filters['clinics'] = clinics
@@ -187,7 +160,7 @@ class DoctorListView(View):
         clinics = Clinic.objects.filter(city=city.id)
         services = get_object_or_404(Service, slug=kwargs['service_slug'])
 
-        doctors = Doctor.objects.filter(clinic__in=clinics, service=services.id)
+        doctors = Doctor.objects.filter(clinic__in=clinics, service=services.id).distinct()
         doctors_count = doctors.count()
 
         context = {
@@ -198,3 +171,16 @@ class DoctorListView(View):
 
         return render(request, self.template_name, context)
 
+
+class ClinicServiceListView(View):
+    template_name = "core/clinic-service-list.html"
+
+    def get(self, request, *args, **kwargs):
+        context= {}
+
+        city = get_object_or_404(City, slug=kwargs['city_slug'])
+
+        context = {
+        }
+
+        return render(request, self.template_name, context)

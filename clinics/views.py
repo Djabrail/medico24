@@ -19,8 +19,8 @@ class ClinicListView(View):
         return render(request, self.template_name, context)
 
 
-class ClinicItemView(View):
-    template_name = "clinics/item.html"
+class ClinicTopListView(View):
+    template_name = "clinics/top-list.html"
 
     def get(self, request, *args, **kwargs):
         context= {}

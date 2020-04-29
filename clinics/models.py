@@ -35,7 +35,7 @@ class Clinic(models.Model):
     description = models.TextField(blank=True)
     type = models.ManyToManyField(ClinicType)
     service = models.ManyToManyField(ClinicService)
-    city = models.ManyToManyField(City)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
     street = models.CharField(null=True, blank=True, max_length=300, verbose_name="Улица")
     house_number = models.CharField(null=True, blank=True, max_length=300, verbose_name="Номер дома")
     phone = models.CharField(null=True, blank=True, max_length=16, verbose_name="Телефон",)
