@@ -35,9 +35,9 @@ class HomeView(View):
             request.session['city_name'] = 'Москва'
 
 
-        services = Service.objects.filter(doctor__clinic__city__id=location_city_id)[:4]
-        clinic_type = ClinicType.objects.filter(clinic__city__id=location_city_id)[:4]
-        clinic_service = ClinicService.objects.filter(clinic__city__id=location_city_id)[:4]
+        services = Service.objects.filter(doctor__clinic__city__id=location_city_id).distinct()[:4]
+        clinic_type = ClinicType.objects.filter(clinic__city__id=location_city_id).distinct()[:4]
+        clinic_service = ClinicService.objects.filter(clinic__city__id=location_city_id).distinct()[:4]
 
         context = {
             'search_form': search_form,

@@ -46,25 +46,27 @@
             {{doctor.description}}
           </div>
 
-          <div class="doctors__clinics-list">
-            <div class="doctors__clinics-item">
-              <div class="doctors__clinic">
-                <div class="doctors__clinic-name">Клиника «Профессионал»</div>
-                <div class="doctors__clinic-address">
-                  Волгоград, ул. Академическая, д. 2
+              <div class="doctors__clinics-list">
+                {% for clinic in doctor.clinic.all %}
+                <div class="doctors__clinics-item">
+                  <div class="doctors__clinic">
+                    <div class="doctors__clinic-name">Клиника «{{clinic.name}}»</div>
+                    <div class="doctors__clinic-address">
+                      {{ request.session.city_name }}, ул. {{clinic.street}}, д. {{clinic.house_number}}
+                    </div>
+                  </div>
+                  <footer class="doctors__footer">
+                    <a class="doctors__button">Запись на прием</a>
+                    <a class="doctors__phone" href="">{{clinic.phone}}</a>
+                    <div class="doctors__price">Прием — от {{doctor.price}} руб.</div>
+                  </footer>
                 </div>
+                {% endfor %}
               </div>
-              <footer class="doctors__footer">
-                <a class="doctors__button">Запись на прием</a>
-                <a class="doctors__phone" href="">+7 (926) 328-95-07</a>
-                <div class="doctors__price">Прием — 750 руб.</div>
-              </footer>
-            </div>
-          </div>
         </aside>
       </div>
 
-      <div class="doctor__bottom">
+      <div style="display: none;" class="doctor__bottom">
         <div class="doctor__card">
           <div class="doctor__card-title">Образование</div>
           <div class="doctor__card-body">

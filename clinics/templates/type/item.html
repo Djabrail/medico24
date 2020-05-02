@@ -19,16 +19,16 @@
         </li>
         <li class="breadcrumb__item">
           <a class="breadcrumb__link" href="#" aria-current="location"
-            >Лечебные учреждения</a
+            >{{type.name}}</a
           >
         </li>
       </ol>
     </nav>
     <div class="clinics__header">
-      Лечебные учреждения
+      {{type.name}}
     </div>
     <div class="clinics__description">
-      Лечебные учреждения Краснодара (народный рейтинг): 909 лечебных учреждений, 13732 специалиста, 120535 отзывов пациентов, цены на услуги, номера телефонов, сайты, адреса и схемы проезда. Сделайте выбор из списка лучших клиник в Краснодаре и запишитесь на приём к врачу в два клика.
+      {{type.description}}
     </div>
     <div class="clinics__list">
     {% for clinic in clinics %}
@@ -44,7 +44,7 @@
         </aside>
         <aside class="clinics__aside-right">
           <header class="clinics__top">
-            <a href="/{{ request.session.city_slug }}/clinici/{{clinic.slug}}" class="clinics__title"
+            <a href="" class="clinics__title"
               >{{clinic.name}}</a
             >
 
@@ -63,25 +63,6 @@
       </article>
     {% endfor %}
     </div>
-
-   <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-  </div>
-
   </div>
 </div>
 {% endblock content %}

@@ -6,9 +6,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('<slug:city_slug>/vrach/', include('doctors.urls', namespace='doctors')),
-    path('<slug:city_slug>/clinici/', include('clinics.urls', namespace='clinics')),
-    path('locations/', include('locations.urls', namespace='locations')),
+    path('', include('doctors.urls', namespace='doctors')),
+    path('', include('clinics.urls', namespace='clinics')),
+    path('', include('locations.urls', namespace='locations')),
     path('', include('core.urls', namespace='core')),
 ]
 

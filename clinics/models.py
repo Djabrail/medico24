@@ -1,7 +1,11 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from locations.models import City
+from datetime import date
 
+
+def image_path(instance, filename):
+    return '/'.join([str('clinics'), str(instance.id), str('photo'), date.today().strftime('%Y/%m/%d'), filename])
 
 class ClinicService(models.Model):
     name = models.CharField(max_length=255)
@@ -32,6 +36,7 @@ class ClinicType(models.Model):
 class Clinic(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=250)
+    image = models.ImageField(null=True, blank=True, upload_to=image_path, verbose_name="Фото")
     description = models.TextField(blank=True)
     type = models.ManyToManyField(ClinicType)
     service = models.ManyToManyField(ClinicService)

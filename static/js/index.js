@@ -107,7 +107,7 @@ function getSearch() {
 
       searchResult.forEach(item => {
         const link = document.createElement("a");
-        link.classList.add("dropdown_search_item");
+        link.classList.add("search__dropdown-item");
         link.textContent = item.name;
         link.href = `/${currentCitySlug}/${item.slug}`;
         list.append(link);
@@ -126,7 +126,7 @@ function getSearch() {
 
       searchResult.forEach(item => {
         const link = document.createElement("a");
-        link.classList.add("dropdown_search_item");
+        link.classList.add("search__dropdown-item");
         link.textContent = item.name;
         link.href = `/${currentCitySlug}/${item.slug}`;
         list.append(link);
@@ -145,7 +145,7 @@ function getSearch() {
 
       searchResult.forEach(item => {
         const link = document.createElement("a");
-        link.classList.add("dropdown_search_item");
+        link.classList.add("search__dropdown-item");
         link.textContent = item.user.full_name;
         link.href = `/${currentCitySlug}/vrach/${item.user.slug}`;
         list.append(link);

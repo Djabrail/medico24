@@ -40,7 +40,7 @@
             <a href="/{{ request.session.city_slug }}/clinici/" class="card__title">Клиники</a>
                 <div class="card__body">
                     {% for type in clinic_type %}
-                        <a class="card__link" href="/{{ request.session.city_slug }}/clinici/{{type.slug}}">{{type.name}}</a>
+                        <a class="card__link" href="/{{ request.session.city_slug }}/top/{{type.slug}}">{{type.name}}</a>
                     {% endfor %}
                 </div>
             <a href="/{{ request.session.city_slug }}/clinici/" class="card__button">Все клиники</a>

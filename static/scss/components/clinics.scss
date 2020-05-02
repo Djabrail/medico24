@@ -1,0 +1,93 @@
+.clinics {
+    &__header {
+        color: #333;
+        margin-top: 20px;
+        font-size: 22px;
+    }
+
+    &__description {
+        color: #333;
+        margin-top: 6px;
+        margin-bottom: 40px;
+    }
+
+    &__item {
+        background-color: #fff;
+        box-shadow: 0 15px 20px rgba(151, 158, 167, 0.1);
+        padding: 20px;
+        border-radius: 4px;
+        margin-top: 20px;
+        display: flex;
+    }
+
+    &__aside-right {
+        margin-left: 10px;
+    }
+
+    &__title {
+        color: #302a7a;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 1.42857;
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__subtitle {
+        font-size: 13px;
+        color: #0ea646;
+        margin-top: 2px;
+    }
+
+    &__phone {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 20px 0;
+        font-size: 14px;
+
+        &-number {
+            margin-right: 10px;
+            color: #302a7a;
+            min-width: 152px;
+            top: 0;
+            margin-left: 0;
+
+            &:before {
+                content: " ";
+                display: inline-block;
+                margin-right: 2px;
+                width: 18px;
+                height: 18px;
+                background: url(../img/ph.svg) 50% no-repeat;
+                background-size: 12px 12px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &__body {
+        font-size: 13px;
+        line-height: 1.42857;
+        color: #333;
+    }
+
+    &__address {
+        padding-top: 10px;
+        font-size: 13px;
+        color: #333;
+
+        &:before {
+            content: " ";
+            display: inline-block;
+            margin-right: 2px;
+            width: 22px;
+            height: 22px;
+            background: url(../img/address.svg) 50% no-repeat;
+            vertical-align: middle;
+        }
+    }
+}
