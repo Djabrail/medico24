@@ -22,7 +22,8 @@ class ClinicListView(View):
 
         context = {
             'clinics': clinics,
-            'page_obj': page_obj
+            'page_obj': page_obj,
+            'city': city
         }
 
         return render(request, self.template_name, context)
@@ -39,7 +40,8 @@ class ClinicItemView(View):
 
 
         context = {
-            'clinic': clinic
+            'clinic': clinic,
+            'city': city
         }
 
         return render(request, self.template_name, context)
@@ -57,7 +59,45 @@ class ClinicTypeItemView(View):
 
         context = {
             'clinics': clinics,
-            'type': type
+            'type': type,
+            'city': city
+        }
+
+        return render(request, self.template_name, context)
+
+
+
+class ClinicServiceListView(View):
+    template_name = "service/list.html"
+
+    def get(self, request, *args, **kwargs):
+        context= {}
+
+        city = get_object_or_404(City, slug=kwargs['city_slug'])
+        clinics = Clinic.objects.filter(city=city)
+
+        context = {
+            'clinics': clinics,
+            'city': city
+        }
+
+        return render(request, self.template_name, context)
+
+
+class ClinicServiceItemView(View):
+    template_name = "service/item.html"
+
+    def get(self, request, *args, **kwargs):
+        context= {}
+
+        city = get_object_or_404(City, slug=kwargs['city_slug'])
+        service = get_object_or_404(ClinicService, slug=kwargs['service_slug'])
+        clinics = Clinic.objects.filter(city=city, service=service)
+
+        context = {
+            'clinics': clinics,
+            'service': service,
+            'city':city
         }
 
         return render(request, self.template_name, context)

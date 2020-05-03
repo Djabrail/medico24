@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %} {% endblock title %}
+
+
+{% block content %}
+{% include 'core/inludes/search-form.html' %}
+
+
+<div class="clinics">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="/">Medico24</a><span>»</span>
+        </li>
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="/{{city.slug}}">{{city.name}} </a><span>»</span>
+        </li>
+        <li class="breadcrumb__item">
+          <a class="breadcrumb__link" href="#" aria-current="location"
+            >{{service.name}}</a
+          >
+        </li>
+      </ol>
+    </nav>
+    <div class="clinics__header">
+     {{service.name}} услуги в {{city.name}}
+    </div>
+    <div class="clinics__description">
+      Лечебные учреждения Краснодара (народный рейтинг): 909 лечебных учреждений, 13732 специалиста, 120535 отзывов пациентов, цены на услуги, номера телефонов, сайты, адреса и схемы проезда. Сделайте выбор из списка лучших клиник в Краснодаре и запишитесь на приём к врачу в два клика.
+    </div>
+    <div class="clinics__list">
+    {% for clinic in clinics %}
+      <article class="clinics__item">
+        <aside class="clinics__aside-left">
+          <figure class="clinics__figure">
+            <img
+              src="{{clinic.image.url}}"
+              alt="Dummy Image"
+              class="clinics__image"
+            />
+          </figure>
+        </aside>
+        <aside class="clinics__aside-right">
+          <header class="clinics__top">
+            <a href="/{{ request.session.city_slug }}/clinici/{{clinic.slug}}" class="clinics__title"
+              >{{clinic.name}}</a
+            >
+
+          </header>
+          <div class="clinics__phone">
+            <div class="clinics__phone-number">{{clinic.phone}}</div>
+            <a href="#" class="clinics__phone-time">Открыто до 17:00</a>
+          </div>
+          <div class="clinics__body">
+            <p class="clinics__copy">
+              {{clinic.description}}
+            </p>
+          </div>
+          <div class="clinics__address">{{clinic.street}} {{clinic.house_number}}</div>
+        </aside>
+      </article>
+    {% endfor %}
+    </div>
+
+   <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+
+  </div>
+</div>
+{% endblock content %}

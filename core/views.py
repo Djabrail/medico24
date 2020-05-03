@@ -49,6 +49,35 @@ class HomeView(View):
         return render(request, self.template_name, context)
 
 
+class HomeCityView(View):
+    template_name = "core/home.html"
+
+    def get(self, request, *args, **kwargs):
+        context= {}
+        search_form = SearchForm()
+
+
+        city = get_object_or_404(City, slug=kwargs['city_slug'])
+
+        if city:
+            location_city_id = request.session['city_id'] = city.id
+            request.session['city_slug'] = city.slug
+            request.session['city_name'] = city.name
+
+
+        services = Service.objects.filter(doctor__clinic__city__id=location_city_id).distinct()[:4]
+        clinic_type = ClinicType.objects.filter(clinic__city__id=location_city_id).distinct()[:4]
+        clinic_service = ClinicService.objects.filter(clinic__city__id=location_city_id).distinct()[:4]
+
+        context = {
+            'search_form': search_form,
+            'services': services,
+            'clinic_type': clinic_type,
+            'clinic_service': clinic_service
+        }
+
+        return render(request, self.template_name, context)
+
 class SearchView(View):
     template_name = "core/search.html"
 
@@ -172,15 +201,3 @@ class DoctorListView(View):
         return render(request, self.template_name, context)
 
 
-class ClinicServiceListView(View):
-    template_name = "core/clinic-service-list.html"
-
-    def get(self, request, *args, **kwargs):
-        context= {}
-
-        city = get_object_or_404(City, slug=kwargs['city_slug'])
-
-        context = {
-        }
-
-        return render(request, self.template_name, context)

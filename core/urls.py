@@ -9,7 +9,6 @@ urlpatterns = [
     path('api/', views.SearchAPIView.as_view(), name='api'),
     # path('<slug:slug>/', views.CityView.as_view(), name='city'),
     path('cookie/city/', views.cookie_city, name='cookie-city'),
-    path('<slug:city_slug>/', views.HomeView.as_view(), name='home-city'),
+    path('<slug:city_slug>/', views.HomeCityView.as_view(), name='home-city'),
     path('<slug:city_slug>/<slug:service_slug>/', views.DoctorListView.as_view(), name='doctor-list'),
-    path('<slug:city_slug>/uslugi/<slug:service_slug>/', views.ClinicServiceListView.as_view(), name='clinic-service-list'),
 ]
